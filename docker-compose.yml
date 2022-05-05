@@ -1,0 +1,53 @@
+version: '3.7'
+
+networks:
+  registration-network:
+    name: registration-network
+    driver: bridge
+
+services:
+  reg-registration-webapp:
+    #build:
+    #  context: ./
+    #  dockerfile: Dockerfile
+    image: reg/registration
+    networks:
+      - registration-network
+    ports:
+      - 8080:8080
+    environment:
+      #POSTGRES_JDBC_USER: UASENAME
+      #POSTGRES_JDBC_PASS: PASSWORD
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://dbpostgres:5432/registrationdb?currentSchema=public"
+      #SPRING_PROFILES_ACTIVE: dev
+
+    #command: mvn spring-boot:run -Dspring.profiles.active=dev
+    depends_on:
+      - dbpostgres
+
+  dbpostgres:
+    image: 'postgres:14.2'
+    container_name: dbpostgres
+    networks:
+      - registration-network
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=registrationdb
+
+  dbpostgres_test:
+    image: 'postgres:14.2'
+    container_name: dbpostgres_test
+    networks:
+      - registration-network
+    #in-memory RAM database
+    tmpfs:
+      - /var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=registrationdb_test

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Programming",
+    "courseId": "321e4567-e89b-42d3-a456-556642440000"
+  },
+  {
+    "name": "Architecture",
+    "courseId": "321e4567-e89b-42d3-a456-556642440001"
+  },
+  {
+    "name": "System Design 2",
+    "courseId": "321e4567-e89b-42d3-a456-556642440002"
+  }
+]

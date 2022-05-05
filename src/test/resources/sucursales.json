@@ -1,0 +1,12 @@
+[
+  {
+    "direccion": "Capital Federal",
+    "longitud": 2,
+    "latitud": 2
+  },
+  {
+    "direccion": "Cordoba Capital",
+    "longitud": 3,
+    "latitud": 3
+  }
+]
